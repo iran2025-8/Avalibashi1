@@ -1,0 +1,1688 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مدرسه کوچولو - برنامه آموزشی پیشرفته کلاس اول</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* استایل کلی صفحه */
+        
+        * {
+            box-sizing: border-box;
+            font-family: 'Vazirmatn', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        @font-face {
+            font-family: 'Vazirmatn';
+            src: url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css');
+        }
+        
+        body {
+            background: linear-gradient(135deg, #e0f7fa 0%, #bbdefb 100%);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            color: #333;
+            text-align: center;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            padding: 15px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+        /* دکمه بازگشت به بالا */
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: #ff6b6b;
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            transition: all 0.3s;
+        }
+        
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            background: #ff5252;
+        }
+        /* انیمیشن‌ها */
+        
+        @keyframes float {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        @keyframes pulse {
+            0%,
+            100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+        
+        @keyframes bounce {
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-20px);
+            }
+            60% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        @keyframes correct {
+            0% {
+                background-color: #7cb342;
+            }
+            50% {
+                background-color: #aed581;
+            }
+            100% {
+                background-color: #7cb342;
+            }
+        }
+        
+        @keyframes rainbow {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        
+        @keyframes confetti {
+            0% {
+                transform: translateY(0) rotate(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+        /* هدر */
+        
+        header {
+            background: linear-gradient(135deg, #42a5f5 0%, #1e88e5 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            z-index: -1;
+            filter: blur(20px);
+            opacity: 0.3;
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: 2rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        h2 {
+            color: #1565c0;
+            border-bottom: 3px dashed #90caf9;
+            padding-bottom: 10px;
+            margin-top: 25px;
+            font-size: 1.5rem;
+        }
+        /* منو - طراحی جدید برای موبایل */
+        
+        .menu {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+            padding: 0 10px;
+        }
+        
+        .menu-btn {
+            background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+            color: white;
+            border: none;
+            padding: 14px 10px;
+            border-radius: 16px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            min-height: 80px;
+        }
+        
+        .menu-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        
+        .menu-btn i {
+            font-size: 1.4rem;
+        }
+        /* بخش‌های محتوا */
+        
+        .content-section {
+            display: none;
+            padding: 20px;
+            border: 3px solid #bbdefb;
+            border-radius: 18px;
+            margin: 20px 0;
+            background-color: #f5fcff;
+            min-height: 400px;
+            box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* بخش اعداد */
+        
+        .number-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+            padding: 0 10px;
+        }
+        
+        .number-card {
+            width: 100%;
+            height: 130px;
+            background: linear-gradient(135deg, #ce93d8 0%, #ab47bc 100%);
+            color: white;
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 2.2rem;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .number-card::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: rotate(45deg);
+            transition: all 0.5s;
+        }
+        
+        .number-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        
+        .number-card:hover::before {
+            transform: rotate(45deg) translate(20px, 20px);
+        }
+        
+        .number-name {
+            font-size: 1.1rem;
+            margin-top: 8px;
+            font-weight: bold;
+        }
+        /* بخش حروف */
+        
+        .alphabet-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 20px;
+            padding: 0 10px;
+        }
+        
+        .letter-card {
+            width: 100%;
+            height: 110px;
+            background: linear-gradient(135deg, #80deea 0%, #0097a7 100%);
+            color: white;
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 2.2rem;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .letter-card::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: rotate(45deg);
+            transition: all 0.5s;
+        }
+        
+        .letter-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        
+        .letter-card:hover::before {
+            transform: rotate(45deg) translate(20px, 20px);
+        }
+        
+        .letter-name {
+            font-size: 0.9rem;
+            margin-top: 8px;
+            font-weight: bold;
+        }
+        /* بخش ریاضی */
+        
+        .math-container {
+            background: linear-gradient(135deg, #c5e1a5 0%, #7cb342 100%);
+            padding: 25px;
+            border-radius: 18px;
+            color: white;
+            margin: 0 auto;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .math-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" opacity="0.1"><text x="50%" y="50%" font-size="50" text-anchor="middle" dominant-baseline="middle">+−×÷</text></svg>');
+            z-index: 0;
+        }
+        
+        .problem {
+            font-size: 2.5rem;
+            margin: 20px 0;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .visual-math {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 15px 0;
+        }
+        
+        .math-object {
+            width: 40px;
+            height: 40px;
+            background: #ffcc80;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .answer-input {
+            font-size: 1.5rem;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 12px;
+            width: 140px;
+            text-align: center;
+            margin: 15px 0;
+            box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .answer-input:focus {
+            outline: none;
+            box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.2), 0 0 12px rgba(255, 255, 255, 0.5);
+            transform: scale(1.05);
+        }
+        
+        .check-btn {
+            background: linear-gradient(135deg, #ffeb3b 0%, #fbc02d 100%);
+            color: #333;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin: 10px;
+            position: relative;
+            z-index: 1;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .check-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+        }
+        
+        .result {
+            font-size: 1.6rem;
+            margin: 20px 0;
+            font-weight: bold;
+            min-height: 50px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .score {
+            font-size: 1.5rem;
+            margin-top: 20px;
+            background-color: rgba(255, 255, 255, 0.25);
+            padding: 12px 20px;
+            border-radius: 12px;
+            display: inline-block;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+        }
+        /* بخش چوب خط */
+        
+        .tally-section {
+            background: linear-gradient(135deg, #ffcc80 0%, #ffa726 100%);
+            padding: 20px;
+            border-radius: 18px;
+            margin: 25px auto;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+        
+        .tally-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .tally-box {
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            min-width: 120px;
+        }
+        
+        .tally-canvas {
+            width: 100%;
+            height: 120px;
+            background: #f5f5f5;
+            border-radius: 8px;
+            margin-top: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            color: #555;
+        }
+        /* بخش ترانه‌های کودکانه */
+        
+        .songs-section {
+            background: linear-gradient(135deg, #ef9a9a 0%, #e57373 100%);
+            padding: 20px;
+            border-radius: 18px;
+            margin: 25px auto;
+            color: white;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+        
+        .songs-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .song-card {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            backdrop-filter: blur(5px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .song-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.3);
+        }
+        /* پروفایل کاربر */
+        
+        .profile-section {
+            background: linear-gradient(135deg, #b39ddb 0%, #7986cb 100%);
+            padding: 20px;
+            border-radius: 18px;
+            margin: 25px auto;
+            color: white;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+        
+        .profile-form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 15px;
+        }
+        
+        .profile-input {
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+        
+        .profile-display {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px;
+            border-radius: 12px;
+            margin-top: 15px;
+            backdrop-filter: blur(5px);
+        }
+        
+        .avatar-selection {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+        
+        .avatar-option {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 3px solid transparent;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .avatar-option:hover {
+            transform: scale(1.1);
+        }
+        
+        .avatar-option.selected {
+            border-color: #ffeb3b;
+            box-shadow: 0 0 12px #ffeb3b;
+        }
+        /* پاصفحه */
+        
+        footer {
+            margin-top: 30px;
+            padding: 15px;
+            color: #666;
+            font-size: 1rem;
+            background: linear-gradient(135deg, #e0e0e0 0%, #bdbdbd 100%);
+            border-radius: 12px;
+            box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.05);
+        }
+        /* دکمه‌های رسانه‌ای */
+        
+        .media-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin: 15px 0;
+        }
+        
+        .media-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        .play-btn {
+            background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%);
+            color: white;
+        }
+        
+        .pause-btn {
+            background: linear-gradient(135deg, #ff9800 0%, #ef6c00 100%);
+            color: white;
+        }
+        
+        .stop-btn {
+            background: linear-gradient(135deg, #f44336 0%, #c62828 100%);
+            color: white;
+        }
+        
+        .media-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
+        }
+        /* آواتار */
+        
+        .avatar-container {
+            display: flex;
+            justify-content: center;
+            margin: 15px 0;
+        }
+        
+        .avatar {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 40px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+            animation: pulse 2s infinite;
+        }
+        /* پیشرفت */
+        
+        .progress-container {
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            margin: 25px auto;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .progress-bar {
+            height: 25px;
+            background: #e0e0e0;
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 12px 0;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(135deg, #42a5f5 0%, #1e88e5 100%);
+            border-radius: 12px;
+            width: 65%;
+            transition: width 0.5s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        /* انیمیشن‌های ویژه */
+        
+        .bounce {
+            animation: bounce 1s;
+        }
+        
+        .correct {
+            animation: correct 0.5s;
+        }
+        
+        .rainbow-text {
+            background: linear-gradient(90deg, #ff0000, #ff9900, #ffff00, #00ff00, #00ffff, #0000ff, #9900ff);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: rainbow 5s ease infinite;
+        }
+        
+        .confetti {
+            position: fixed;
+            width: 12px;
+            height: 12px;
+            background: #f00;
+            opacity: 0;
+            z-index: 1000;
+        }
+        /* استایل‌های جدید برای بهبود ظاهر */
+        
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .section-title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .section-title i {
+            font-size: 1.8rem;
+            color: #1565c0;
+        }
+        /* رسپانسیو برای تبلت */
+        
+        @media (min-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            .menu {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .number-container {
+                grid-template-columns: repeat(5, 1fr);
+            }
+            .alphabet-container {
+                grid-template-columns: repeat(5, 1fr);
+            }
+            .songs-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            h1 {
+                font-size: 2.3rem;
+            }
+            h2 {
+                font-size: 1.7rem;
+            }
+        }
+        /* رسپانسیو برای دسکتاپ */
+        
+        @media (min-width: 1024px) {
+            .menu {
+                grid-template-columns: repeat(6, 1fr);
+            }
+            .number-container {
+                grid-template-columns: repeat(5, 1fr);
+                gap: 20px;
+            }
+            .alphabet-container {
+                grid-template-columns: repeat(6, 1fr);
+                gap: 15px;
+            }
+            .number-card {
+                height: 150px;
+                font-size: 2.5rem;
+            }
+            .letter-card {
+                height: 120px;
+                font-size: 2.5rem;
+            }
+            .problem {
+                font-size: 3rem;
+            }
+        }
+        /* بهبودهای ظاهری برای المان‌های تعاملی */
+        
+        .game-btn {
+            background: linear-gradient(135deg, #ff7043 0%, #f4511e 100%);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin: 8px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .game-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+        }
+        /* استایل برای حالت شب */
+        
+        .night-mode {
+            background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
+            color: #e0e0e0;
+        }
+        
+        .night-mode .container {
+            background-color: rgba(18, 18, 36, 0.95);
+            color: #e0e0e0;
+        }
+        
+        .night-mode header {
+            background: linear-gradient(135deg, #283593 0%, #1a237e 100%);
+        }
+        /* دکمه تغییر حالت شب */
+        
+        .theme-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #5c6bc0;
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            transition: all 0.3s;
+        }
+        
+        .theme-toggle:hover {
+            transform: rotate(30deg);
+            background: #3f51b5;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="back-to-top" onclick="scrollToTop()">
+            <i class="fas fa-arrow-up"></i>
+        </div>
+
+        <div class="theme-toggle" onclick="toggleNightMode()">
+            <i class="fas fa-moon"></i>
+        </div>
+
+        <header>
+            <div class="avatar-container">
+                <div class="avatar" id="user-avatar">
+                    <i class="fas fa-child"></i>
+                </div>
+            </div>
+            <h1 class="rainbow-text">مدرسه کوچولو</h1>
+            <p id="welcome-message">برنامه آموزشی پیشرفته برای کلاس اولی‌های عزیز</p>
+        </header>
+
+        <div class="menu">
+            <button class="menu-btn" onclick="showSection('profile')">
+                <i class="fas fa-user"></i>
+                <span>پروفایل</span>
+            </button>
+            <button class="menu-btn" onclick="showSection('numbers')">
+                <i class="fas fa-list-ol"></i>
+                <span>اعداد</span>
+            </button>
+            <button class="menu-btn" onclick="showSection('alphabet')">
+                <i class="fas fa-font"></i>
+                <span>حروف</span>
+            </button>
+            <button class="menu-btn" onclick="showSection('math')">
+                <i class="fas fa-calculator"></i>
+                <span>ریاضی</span>
+            </button>
+            <button class="menu-btn" onclick="showSection('tally')">
+                <i class="fas fa-chart-bar"></i>
+                <span>چوب خط</span>
+            </button>
+            <button class="menu-btn" onclick="showSection('songs')">
+                <i class="fas fa-music"></i>
+                <span>ترانه‌ها</span>
+            </button>
+        </div>
+
+        <!-- بخش پروفایل -->
+        <section id="profile-section" class="content-section">
+            <div class="section-title">
+                <i class="fas fa-user"></i>
+                <h2>پروفایل کاربری</h2>
+            </div>
+            <p>لطفاً اطلاعات خود را وارد کنید تا پیشرفت شما ذخیره شود</p>
+
+            <div class="profile-section">
+                <div class="profile-form">
+                    <input type="text" class="profile-input" id="user-name" placeholder="نام شما">
+                    <input type="number" class="profile-input" id="user-age" placeholder="سن شما">
+
+                    <h3>انتخاب آواتار</h3>
+                    <div class="avatar-selection">
+                        <div class="avatar-option selected" style="background: #ff9a9e;" onclick="selectAvatar('fas fa-child', '#ff9a9e')">
+                            <i class="fas fa-child" style="color: white; font-size: 24px;"></i>
+                        </div>
+                        <div class="avatar-option" style="background: #80deea;" onclick="selectAvatar('fas fa-star', '#80deea')">
+                            <i class="fas fa-star" style="color: white; font-size: 24px;"></i>
+                        </div>
+                        <div class="avatar-option" style="background: #c5e1a5;" onclick="selectAvatar('fas fa-heart', '#c5e1a5')">
+                            <i class="fas fa-heart" style="color: white; font-size: 24px;"></i>
+                        </div>
+                        <div class="avatar-option" style="background: #ce93d8;" onclick="selectAvatar('fas fa-smile', '#ce93d8')">
+                            <i class="fas fa-smile" style="color: white; font-size: 24px;"></i>
+                        </div>
+                    </div>
+
+                    <button class="check-btn" onclick="saveProfile()">
+                        <i class="fas fa-save"></i> ذخیره اطلاعات
+                    </button>
+                </div>
+
+                <div class="profile-display" id="profile-display" style="display: none;">
+                    <h3>سلام <span id="display-name">عزیز</span>!</h3>
+                    <p>سن: <span id="display-age">--</span> سال</p>
+                    <p>امتیاز کل: <span id="display-score">0</span></p>
+                    <button class="game-btn" onclick="resetProgress()">
+                        <i class="fas fa-trash"></i> حذف اطلاعات
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- بخش اعداد -->
+        <section id="numbers-section" class="content-section">
+            <div class="section-title">
+                <i class="fas fa-list-ol"></i>
+                <h2>آموزش اعداد فارسی</h2>
+            </div>
+            <p>روی هر عدد کلیک کن تا بشنوی! <i class="fas fa-hand-point-down"></i></p>
+
+            <div class="media-buttons">
+                <div class="media-btn play-btn" onclick="playAllNumbers()">
+                    <i class="fas fa-play"></i>
+                </div>
+                <div class="media-btn pause-btn" onclick="pauseAudio()">
+                    <i class="fas fa-pause"></i>
+                </div>
+                <div class="media-btn stop-btn" onclick="stopAudio()">
+                    <i class="fas fa-stop"></i>
+                </div>
+            </div>
+
+            <div class="number-container">
+                <div class="number-card" onclick="playNumber(1)">
+                    <div>۱</div>
+                    <div class="number-name">یک</div>
+                </div>
+                <div class="number-card" onclick="playNumber(2)">
+                    <div>۲</div>
+                    <div class="number-name">دو</div>
+                </div>
+                <div class="number-card" onclick="playNumber(3)">
+                    <div>۳</div>
+                    <div class="number-name">سه</div>
+                </div>
+                <div class="number-card" onclick="playNumber(4)">
+                    <div>۴</div>
+                    <div class="number-name">چهار</div>
+                </div>
+                <div class="number-card" onclick="playNumber(5)">
+                    <div>۵</div>
+                    <div class="number-name">پنج</div>
+                </div>
+                <div class="number-card" onclick="playNumber(6)">
+                    <div>۶</div>
+                    <div class="number-name">شش</div>
+                </div>
+                <div class="number-card" onclick="playNumber(7)">
+                    <div>۷</div>
+                    <div class="number-name">هفت</div>
+                </div>
+                <div class="number-card" onclick="playNumber(8)">
+                    <div>۸</div>
+                    <div class="number-name">هشت</div>
+                </div>
+                <div class="number-card" onclick="playNumber(9)">
+                    <div>۹</div>
+                    <div class="number-name">نه</div>
+                </div>
+                <div class="number-card" onclick="playNumber(10)">
+                    <div>۱۰</div>
+                    <div class="number-name">ده</div>
+                </div>
+            </div>
+
+            <div class="progress-container">
+                <h3>پیشرفت یادگیری اعداد</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill">65%</div>
+                </div>
+                <p>شما 13 عدد از 20 عدد را یاد گرفته‌اید!</p>
+            </div>
+        </section>
+
+        <!-- بخش حروف الفبا -->
+        <section id="alphabet-section" class="content-section">
+            <div class="section-title">
+                <i class="fas fa-font"></i>
+                <h2>آموزش حروف فارسی</h2>
+            </div>
+            <p>روی هر حرف کلیک کن تا صدا و مثال بشنوی! <i class="fas fa-hand-point-down"></i></p>
+
+            <div class="alphabet-container">
+                <div class="letter-card" onclick="playLetter('ا', 'الف', 'سیب')">
+                    <div>ا</div>
+                    <div class="letter-name">الف</div>
+                </div>
+                <div class="letter-card" onclick="playLetter('ب', 'ب', 'بلبل')">
+                    <div>ب</div>
+                    <div class="letter-name">ب</div>
+                </div>
+                <div class="letter-card" onclick="playLetter('پ', 'پ', 'پتو')">
+                    <div>پ</div>
+                    <div class="letter-name">پ</div>
+                </div>
+                <div class="letter-card" onclick="playLetter('ت', 'ت', 'تخم مرغ')">
+                    <div>ت</div>
+                    <div class="letter-name">ت</div>
+                </div>
+                <div class="letter-card" onclick="playLetter('ث', 'ث', 'ثابت')">
+                    <div>ث</div>
+                    <div class="letter-name">ث</div>
+                </div>
+                <div class="letter-card" onclick="playLetter('ج', 'ج', 'جوجه')">
+                    <div>ج</div>
+                    <div class="letter-name">ج</div>
+                </div>
+                <div class="letter-card" onclick="playLetter('چ', 'چ', 'چتر')">
+                    <div>چ</div>
+                    <div class="letter-name">چ</div>
+                </div>
+                <div class="letter-card" onclick="playLetter('ح', 'ح', 'حلزون')">
+                    <div>ح</div>
+                    <div class="letter-name">ح</div>
+                </div>
+                <div class="letter-card" onclick="playLetter('خ', 'خ', 'خروس')">
+                    <div>خ</div>
+                    <div class="letter-name">خ</div>
+                </div>
+                <div class="letter-card" onclick="playLetter('د', 'د', 'دست')">
+                    <div>د</div>
+                    <div class="letter-name">د</div>
+                </div>
+                <div class="letter-card" onclick="playLetter('ذ', 'ذ', 'ذرت')">
+                    <div>ذ</div>
+                    <div class="letter-name">ذ</div>
+                </div>
+                <div class="letter-card" onclick="playLetter('ر', 'ر', 'رنگ')">
+                    <div>ر</div>
+                    <div class="letter-name">ر</div>
+                </div>
+                <div class="letter-card" onclick="playLetter('ز', 'ز', 'زنبور')">
+                    <div>ز</div>
+                    <div class="letter-name">ز</div>
+                </div>
+                <div class="letter-card" onclick="playLetter('ژ', 'ژ', 'ژاله')">
+                    <div>ژ</div>
+                    <div class="letter-name">ژ</div>
+                </div>
+                <div class="letter-card" onclick="playLetter('س', 'س', 'سنگ')">
+                    <div>س</div>
+                    <div class="letter-name">س</div>
+                </div>
+            </div>
+
+            <div class="progress-container">
+                <h3>پیشرفت یادگیری حروف</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 40%;">40%</div>
+                </div>
+                <p>شما 12 حرف از 32 حرف را یاد گرفته‌اید!</p>
+            </div>
+        </section>
+
+        <!-- بخش ریاضی -->
+        <section id="math-section" class="content-section">
+            <div class="section-title">
+                <i class="fas fa-calculator"></i>
+                <h2>بازی جمع و تفریق</h2>
+            </div>
+            <p>مسئله ریاضی را حل کن و پاسخ را در کادر وارد کن! <i class="fas fa-hand-point-down"></i></p>
+
+            <div class="math-container">
+                <div class="problem" id="math-problem">۵ + ۳ = ?</div>
+
+                <div class="visual-math" id="visual-math">
+                    <!-- اشکال ریاضی اینجا نمایش داده می‌شوند -->
+                </div>
+
+                <div>
+                    <input type="number" class="answer-input" id="math-answer" placeholder="پاسخ">
+                    <button class="check-btn" onclick="checkAnswer()">
+                        <i class="fas fa-check"></i> بررسی پاسخ
+                    </button>
+                </div>
+
+                <div class="result" id="math-result"></div>
+
+                <div class="score">امتیاز: <span id="score">۰</span> <i class="fas fa-star"></i></div>
+            </div>
+
+            <div class="btn-group">
+                <button class="game-btn" onclick="generateProblem('addition')">
+                    <i class="fas fa-plus"></i> سوال جمع
+                </button>
+                <button class="game-btn" onclick="generateProblem('subtraction')">
+                    <i class="fas fa-minus"></i> سوال تفریق
+                </button>
+                <button class="game-btn" onclick="generateProblem('multiplication')">
+                    <i class="fas fa-times"></i> سوال ضرب
+                </button>
+            </div>
+
+            <div class="progress-container">
+                <h3>پیشرفت ریاضی</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 75%;">75%</div>
+                </div>
+                <p>شما 15 مسئله از 20 مسئله را درست حل کرده‌اید!</p>
+            </div>
+        </section>
+
+        <!-- بخش چوب خط -->
+        <section id="tally-section" class="content-section">
+            <div class="section-title">
+                <i class="fas fa-chart-bar"></i>
+                <h2>آموزش چوب خط</h2>
+            </div>
+            <p>با چوب خط می‌توانیم اعداد را به صورت تصویری نمایش دهیم</p>
+
+            <div class="tally-section">
+                <h3>چوب خط چیست؟</h3>
+                <p>چوب خط یک روش ساده برای شمارش و نمایش اعداد است. به ازای هر عدد یک خط می‌کشیم و بعد از هر چهار خط، خط پنجم را به صورت مورب می‌کشیم.</p>
+
+                <div class="tally-container">
+                    <div class="tally-box">
+                        <h4>عدد ۵</h4>
+                        <div class="tally-canvas">卌</div>
+                    </div>
+                    <div class="tally-box">
+                        <h4>عدد ۵</h4>
+                        <div class="tally-canvas">卌</div>
+                    </div>
+                    <div class="tally-box">
+                        <h4>عدد ۷</h4>
+                        <div class="tally-canvas">卌 卌</div>
+                    </div>
+                </div>
+
+                <div class="btn-group">
+                    <button class="game-btn" onclick="generateTally()">
+                        <i class="fas fa-sync"></i> عدد تصادفی
+                    </button>
+                </div>
+
+                <div class="tally-box" style="margin: 15px auto; max-width: 250px;">
+                    <h4>عدد: <span id="tally-number">5</span></h4>
+                    <div class="tally-canvas" id="tally-canvas">卌</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- بخش ترانه‌ها -->
+        <section id="songs-section" class="content-section">
+            <div class="section-title">
+                <i class="fas fa-music"></i>
+                <h2>ترانه‌های کودکانه</h2>
+            </div>
+            <p>برای یادگیری بهتر، ترانه‌های آموزشی را بشنوید</p>
+
+            <div class="songs-section">
+                <h3>ترانه‌های آموزشی</h3>
+
+                <div class="songs-container">
+                    <div class="song-card" onclick="playSong('الفبا')">
+                        <i class="fas fa-music" style="font-size: 2rem;"></i>
+                        <h4>ترانه الفبا</h4>
+                        <p>آموزش حروف فارسی با آهنگ</p>
+                    </div>
+                    <div class="song-card" onclick="playSong('اعداد')">
+                        <i class="fas fa-music" style="font-size: 2rem;"></i>
+                        <h4>ترانه اعداد</h4>
+                        <p>آموزش اعداد با آهنگ</p>
+                    </div>
+                    <div class="song-card" onclick="playSong('حیوانات')">
+                        <i class="fas fa-music" style="font-size: 2rem;"></i>
+                        <h4>ترانه حیوانات</h4>
+                        <p>آموزش نام حیوانات</p>
+                    </div>
+                    <div class="song-card" onclick="playSong('میوه‌ها')">
+                        <i class="fas fa-music" style="font-size: 2rem;"></i>
+                        <h4>ترانه میوه‌ها</h4>
+                        <p>آموزش نام میوه‌ها</p>
+                    </div>
+                    <div class="song-card" onclick="playSong('رنگ‌ها')">
+                        <i class="fas fa-music" style="font-size: 2rem;"></i>
+                        <h4>ترانه رنگ‌ها</h4>
+                        <p>آموزش نام رنگ‌ها</p>
+                    </div>
+                    <div class="song-card" onclick="playSong('اشکال')">
+                        <i class="fas fa-music" style="font-size: 2rem;"></i>
+                        <h4>ترانه اشکال</h4>
+                        <p>آموزش نام اشکال</p>
+                    </div>
+                </div>
+
+                <div class="media-buttons" style="margin-top: 20px;">
+                    <div class="media-btn play-btn" onclick="playCurrentSong()">
+                        <i class="fas fa-play"></i>
+                    </div>
+                    <div class="media-btn pause-btn" onclick="pauseAudio()">
+                        <i class="fas fa-pause"></i>
+                    </div>
+                    <div class="media-btn stop-btn" onclick="stopAudio()">
+                        <i class="fas fa-stop"></i>
+                    </div>
+                </div>
+
+                <div class="result" id="song-result">
+                    ترانه‌ای انتخاب نشده است
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>ساخته شده با <i class="fas fa-heart" style="color: #ff6b6b;"></i> برای طاها</p>
+            <p>این برنامه قابل استفاده در مایکت و سایر فروشگاه‌های اپلیکیشن است</p>
+            <div style="margin-top: 10px;">
+                <i class="fas fa-star" style="color: #ffc107;"></i>
+                <i class="fas fa-star" style="color: #ffc107;"></i>
+                <i class="fas fa-star" style="color: #ffc107;"></i>
+                <i class="fas fa-star" style="color: #ffc107;"></i>
+                <i class="fas fa-star" style="color: #ffc107;"></i>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // متغیرهای سراسری
+        let currentScore = 0;
+        let currentAnswer = 0;
+        let currentSong = null;
+        let selectedAvatar = {
+            icon: 'fas fa-child',
+            color: '#ff9a9e'
+        };
+        let userName = '';
+        let userAge = '';
+        let isNightMode = false;
+
+        // نمایش بخش انتخاب شده
+        function showSection(sectionId) {
+            // مخفی کردن همه بخش‌ها
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // نمایش بخش مورد نظر
+            document.getElementById(sectionId + '-section').classList.add('active');
+
+            // اگر بخش ریاضی است، یک مسئله تولید کن
+            if (sectionId === 'math') {
+                generateProblem('addition');
+            }
+
+            // اگر بخش چوب خط است، یک عدد تصادفی تولید کن
+            if (sectionId === 'tally') {
+                generateTally();
+            }
+
+            // اسکرول به بالا
+            scrollToTop();
+        }
+
+        // اسکرول به بالا
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // تغییر حالت شب/روز
+        function toggleNightMode() {
+            isNightMode = !isNightMode;
+            if (isNightMode) {
+                document.body.classList.add('night-mode');
+                document.querySelector('.theme-toggle i').className = 'fas fa-sun';
+            } else {
+                document.body.classList.remove('night-mode');
+                document.querySelector('.theme-toggle i').className = 'fas fa-moon';
+            }
+        }
+
+        // انتخاب آواتار
+        function selectAvatar(icon, color) {
+            document.querySelectorAll('.avatar-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            event.currentTarget.classList.add('selected');
+
+            selectedAvatar = {
+                icon,
+                color
+            };
+        }
+
+        // ذخیره پروفایل
+        function saveProfile() {
+            userName = document.getElementById('user-name').value;
+            userAge = document.getElementById('user-age').value;
+
+            if (!userName) {
+                alert('لطفاً نام خود را وارد کنید');
+                return;
+            }
+
+            // ذخیره در localStorage
+            localStorage.setItem('userName', userName);
+            localStorage.setItem('userAge', userAge);
+            localStorage.setItem('userScore', currentScore);
+            localStorage.setItem('userAvatar', JSON.stringify(selectedAvatar));
+
+            // به‌روزرسانی نمایش پروفایل
+            document.getElementById('display-name').textContent = userName;
+            document.getElementById('display-age').textContent = userAge;
+            document.getElementById('display-score').textContent = currentScore;
+            document.getElementById('profile-display').style.display = 'block';
+
+            // به‌روزرسانی هدر
+            document.getElementById('welcome-message').textContent = `سلام ${userName} عزیز!`;
+            document.getElementById('user-avatar').innerHTML = `<i class="${selectedAvatar.icon}"></i>`;
+            document.getElementById('user-avatar').style.background = `linear-gradient(135deg, ${selectedAvatar.color} 0%, #7986cb 100%)`;
+
+            // پخش تشویق
+            speakText(`سلام ${userName} عزیز! خوش آمدی`);
+            createConfetti();
+        }
+
+        // حذف اطلاعات ذخیره شده
+        function resetProgress() {
+            if (confirm('آیا مطمئن هستید که می‌خواهید تمام اطلاعات و پیشرفت خود را حذف کنید؟')) {
+                localStorage.clear();
+                location.reload();
+            }
+        }
+
+        // ایجاد کانفتی
+        function createConfetti() {
+            const colors = ['#ff6b6b', '#ffa726', '#ffeb3b', '#4caf50', '#42a5f5', '#9c27b0'];
+
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.animation = `confetti ${Math.random() * 3 + 2}s linear forwards`;
+                document.body.appendChild(confetti);
+
+                setTimeout(() => {
+                    confetti.remove();
+                }, 5000);
+            }
+        }
+
+        // بارگذاری پروفایل از localStorage
+        function loadProfile() {
+            const savedName = localStorage.getItem('userName');
+            const savedAge = localStorage.getItem('userAge');
+            const savedScore = localStorage.getItem('userScore');
+            const savedAvatar = localStorage.getItem('userAvatar');
+
+            if (savedName) {
+                userName = savedName;
+                userAge = savedAge;
+                currentScore = parseInt(savedScore) || 0;
+
+                if (savedAvatar) {
+                    selectedAvatar = JSON.parse(savedAvatar);
+                }
+
+                // به‌روزرسانی نمایش
+                document.getElementById('user-name').value = userName;
+                document.getElementById('user-age').value = userAge;
+                document.getElementById('display-name').textContent = userName;
+                document.getElementById('display-age').textContent = userAge;
+                document.getElementById('display-score').textContent = currentScore;
+                document.getElementById('profile-display').style.display = 'block';
+                document.getElementById('welcome-message').textContent = `سلام ${userName} عزیز!`;
+                document.getElementById('user-avatar').innerHTML = `<i class="${selectedAvatar.icon}"></i>`;
+                document.getElementById('user-avatar').style.background = `linear-gradient(135deg, ${selectedAvatar.color} 0%, #7986cb 100%)`;
+                document.getElementById('score').textContent = currentScore;
+
+                // انتخاب آواتار ذخیره شده
+                document.querySelectorAll('.avatar-option').forEach(opt => {
+                    opt.classList.remove('selected');
+                    if (opt.querySelector('i').className === selectedAvatar.icon) {
+                        opt.classList.add('selected');
+                    }
+                });
+            }
+        }
+
+        // پخش صدای عدد
+        function playNumber(number) {
+            const numbers = {
+                1: 'یک',
+                2: 'دو',
+                3: 'سه',
+                4: 'چهار',
+                5: 'پنج',
+                6: 'شش',
+                7: 'هفت',
+                8: 'هشت',
+                9: 'نه',
+                10: 'ده'
+            };
+
+            // شبیه‌سازی پخش صوت
+            speakText(`عدد ${number} : ${numbers[number]}`);
+
+            // افکت انیمیشن
+            event.currentTarget.classList.add('bounce');
+            setTimeout(() => {
+                event.currentTarget.classList.remove('bounce');
+            }, 1000);
+
+            // افزایش امتیاز
+            currentScore += 1;
+            document.getElementById('score').textContent = currentScore;
+            updateStoredScore();
+        }
+
+        // پخش همه اعداد به ترتیب
+        function playAllNumbers() {
+            speakText("لطفا همه اعداد را به ترتیب تکرار کنید: یک، دو، سه، چهار، пять، شش، هفت، هشت، نه، ده");
+        }
+
+        // پخش صدای حرف
+        function playLetter(letter, name, example) {
+            // شبیه‌سازی پخش صوت
+            speakText(`حرف ${letter} - ${name} - مثال: ${example}`);
+
+            // افکت انیمیشن
+            event.currentTarget.classList.add('bounce');
+            setTimeout(() => {
+                event.currentTarget.classList.remove('bounce');
+            }, 1000);
+
+            // افزایش امتیاز
+            currentScore += 1;
+            document.getElementById('score').textContent = currentScore;
+            updateStoredScore();
+        }
+
+        // تولید مسئله ریاضی
+        function generateProblem(type) {
+            let num1, num2, problemText;
+
+            if (type === 'addition') {
+                num1 = Math.floor(Math.random() * 10) + 1;
+                num2 = Math.floor(Math.random() * 10) + 1;
+                currentAnswer = num1 + num2;
+                problemText = `${num1} + ${num2} = ?`;
+
+                // ایجاد نمایش بصری
+                let visualHtml = '';
+                for (let i = 0; i < num1; i++) {
+                    visualHtml += `<div class="math-object">🍎</div>`;
+                }
+                visualHtml += `<div class="math-object">+</div>`;
+                for (let i = 0; i < num2; i++) {
+                    visualHtml += `<div class="math-object">🍎</div>`;
+                }
+                visualHtml += `<div class="math-object">=</div>`;
+                document.getElementById('visual-math').innerHTML = visualHtml;
+
+            } else if (type === 'subtraction') {
+                num1 = Math.floor(Math.random() * 10) + 5;
+                num2 = Math.floor(Math.random() * num1) + 1;
+                currentAnswer = num1 - num2;
+                problemText = `${num1} - ${num2} = ?`;
+
+                // ایجاد نمایش بصری
+                let visualHtml = '';
+                for (let i = 0; i < num1; i++) {
+                    visualHtml += `<div class="math-object">🍎</div>`;
+                }
+                visualHtml += `<div class="math-object">-</div>`;
+                for (let i = 0; i < num2; i++) {
+                    visualHtml += `<div class="math-object" style="opacity: 0.5;">🍎</div>`;
+                }
+                visualHtml += `<div class="math-object">=</div>`;
+                document.getElementById('visual-math').innerHTML = visualHtml;
+
+            } else {
+                num1 = Math.floor(Math.random() * 5) + 1;
+                num2 = Math.floor(Math.random() * 5) + 1;
+                currentAnswer = num1 * num2;
+                problemText = `${num1} × ${num2} = ?`;
+
+                // ایجاد نمایش بصری
+                let visualHtml = '';
+                for (let i = 0; i < num1; i++) {
+                    for (let j = 0; j < num2; j++) {
+                        visualHtml += `<div class="math-object">⭐</div>`;
+                    }
+                    if (i < num1 - 1) visualHtml += `<div style="width: 100%;"></div>`;
+                }
+                document.getElementById('visual-math').innerHTML = visualHtml;
+            }
+
+            document.getElementById('math-problem').textContent = problemText;
+            document.getElementById('math-answer').value = '';
+            document.getElementById('math-result').textContent = '';
+        }
+
+        // بررسی پاسخ کاربر
+        function checkAnswer() {
+            const userAnswer = parseInt(document.getElementById('math-answer').value);
+            const resultElement = document.getElementById('math-result');
+
+            if (isNaN(userAnswer)) {
+                resultElement.textContent = 'لطفاً یک عدد وارد کن!';
+                resultElement.style.color = '#e53935';
+                return;
+            }
+
+            if (userAnswer === currentAnswer) {
+                resultElement.innerHTML = 'آفرین! پاسخ تو درست است! <i class="fas fa-check-circle"></i>';
+                resultElement.style.color = '#2e7d32';
+                currentScore += 5;
+                document.getElementById('score').textContent = currentScore;
+                updateStoredScore();
+
+                // افکت درست پاسخ دادن
+                document.querySelector('.math-container').classList.add('correct');
+                setTimeout(() => {
+                    document.querySelector('.math-container').classList.remove('correct');
+                }, 500);
+
+                // پخش صدای تشویق
+                speakText("آفرین! پاسخ تو درست است");
+                createConfetti();
+            } else {
+                resultElement.innerHTML = 'اشکال نداره، دوباره امتحان کن! <i class="fas fa-redo"></i>';
+                resultElement.style.color = '#e53935';
+
+                // کاهش امتیاز برای پاسخ نادرست
+                if (currentScore > 0) {
+                    currentScore -= 2;
+                    document.getElementById('score').textContent = currentScore;
+                    updateStoredScore();
+                }
+
+                // پخش صدای راهنمایی
+                speakText("اشکال نداره، دوباره امتحان کن");
+            }
+        }
+
+        // تولید چوب خط
+        function generateTally() {
+            const number = Math.floor(Math.random() * 15) + 1;
+            document.getElementById('tally-number').textContent = number;
+
+            let tallyText = "";
+            const fullGroups = Math.floor(number / 5);
+            const remainder = number % 5;
+
+            for (let i = 0; i < fullGroups; i++) {
+                tallyText += "卌 ";
+            }
+
+            for (let i = 0; i < remainder; i++) {
+                tallyText += "|";
+            }
+
+            document.getElementById('tally-canvas').textContent = tallyText;
+        }
+
+        // پخش ترانه
+        function playSong(songName) {
+            currentSong = songName;
+            document.getElementById('song-result').innerHTML = `در حال پخش: ترانه ${songName} <i class="fas fa-music"></i>`;
+            speakText(`در حال پخش ترانه ${songName}`);
+        }
+
+        // پخش ترانه جاری
+        function playCurrentSong() {
+            if (currentSong) {
+                document.getElementById('song-result').innerHTML = `در حال پخش: ترانه ${currentSong} <i class="fas fa-music"></i>`;
+                speakText(`در حال پخش ترانه ${currentSong}`);
+            } else {
+                document.getElementById('song-result').innerHTML = `لطفاً primero یک ترانه انتخاب کنید <i class="fas fa-exclamation-circle"></i>`;
+            }
+        }
+
+        // توقف پخش
+        function pauseAudio() {
+            document.getElementById('song-result').innerHTML = `پخش متوقف شد <i class="fas fa-pause-circle"></i>`;
+        }
+
+        // متوقف کردن پخش
+        function stopAudio() {
+            document.getElementById('song-result').innerHTML = `پخش متوقف شد <i class="fas fa-stop-circle"></i>`;
+        }
+
+        // شبیه‌سازی پخش صوت با SpeechSynthesis
+        function speakText(text) {
+            if ('speechSynthesis' in window) {
+                const speech = new SpeechSynthesisUtterance(text);
+                speech.lang = 'fa-IR';
+                speech.rate = 0.9;
+                speech.pitch = 1.2;
+                window.speechSynthesis.speak(speech);
+            }
+        }
+
+        // به‌روزرسانی امتیاز ذخیره شده
+        function updateStoredScore() {
+            if (userName) {
+                localStorage.setItem('userScore', currentScore);
+                document.getElementById('display-score').textContent = currentScore;
+            }
+        }
+
+        // تولید اولین مسئله هنگام بارگذاری صفحه
+        window.onload = function() {
+            generateProblem('addition');
+            generateTally();
+            loadProfile();
+
+            // نمایش دکمه بازگشت به بالا بعد از اسکرول
+            window.onscroll = function() {
+                const backButton = document.querySelector('.back-to-top');
+                if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                    backButton.style.display = 'flex';
+                } else {
+                    backButton.style.display = 'none';
+                }
+            };
+        };
+    </script>
+</body>
+
+</html>
